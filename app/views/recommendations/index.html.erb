@@ -1,0 +1,10 @@
+<h2>Who Shot Ya Recommends</h2>
+<p>All the movies recommended by the hosts and guests of the Who Shot Ya podcast.</p>
+<h3>Recommendations</h3>
+<ul>
+  <% @recommendations.each do |r| %>
+    <li><%= r.name %></li>
+  <% end %>
+</ul>
+
+<p>A fan site and labor of love. Who Shot Ya and Maximum Fun are not responsible for the content of this site.</p>
