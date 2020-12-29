@@ -3,7 +3,7 @@
 <h3>Recommendations</h3>
 <ul>
   <% @recommendations.each do |r| %>
-    <li><%= r.name %></li>
+    <li><%= link_to(r.name, recommendation_path(r)) %></li>
   <% end %>
 </ul>
 

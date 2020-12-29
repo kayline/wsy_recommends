@@ -10,16 +10,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_180420) do
+ActiveRecord::Schema.define(version: 2020_12_29_212543) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "episodes", force: :cascade do |t|
+    t.datetime "release_date"
+    t.integer "number"
+    t.text "title", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "people", force: :cascade do |t|
+    t.text "first_name", null: false
+    t.text "last_name", null: false
+    t.text "bio_link"
+    t.text "twitter_handle"
+    t.boolean "guest", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "recommendations", force: :cascade do |t|
     t.text "name"
     t.text "imdb_path"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "episode_id"
+    t.bigint "person_id"
+    t.index ["episode_id"], name: "index_recommendations_on_episode_id"
+    t.index ["person_id"], name: "index_recommendations_on_person_id"
   end
 
 end
