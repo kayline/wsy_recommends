@@ -15,7 +15,7 @@ jobs:
       - ruby/bundle-install
       - run:
           name: Set up Webpack
-          command: rails webpack:install
+          command: bin/rails webpack:install
       - run:
           name: Set up test database
-          command: rails db:test:prepare
+          command: bin/rails db:test:prepare
