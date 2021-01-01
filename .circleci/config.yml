@@ -14,8 +14,11 @@ jobs:
           command: gem install bundler -v $(grep -A 1 "BUNDLED WITH" Gemfile.lock | tail -1 | tr -d " ")
       - ruby/bundle-install
       - run:
-          name: Set up Webpack
-          command: bin/rails webpack:install
+          name: Set up Webpacker
+          command: bin/rails webpacker:install
       - run:
           name: Set up test database
           command: bin/rails db:test:prepare
+      - run:
+          name: Run tests
+          command: bin/rails spec
