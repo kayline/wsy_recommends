@@ -10,6 +10,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Which bundler?
-          command: bundle -v
+          name: Update bundler
+          command: bundle update --bundler
       - ruby/bundle-install
+      - run:
+          name: Set up Webpack
+          command: rails webpack:install
+      - run:
+          name: Set up test database
+          command: rails db:test:prepare
