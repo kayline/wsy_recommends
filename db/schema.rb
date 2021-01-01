@@ -10,17 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_29_212543) do
+ActiveRecord::Schema.define(version: 2021_01_01_220531) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "episodes", force: :cascade do |t|
     t.datetime "release_date"
-    t.integer "number"
+    t.integer "number", null: false
     t.text "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "episodes_people", id: false, force: :cascade do |t|
+    t.bigint "episode_id", null: false
+    t.bigint "person_id", null: false
+    t.index ["episode_id", "person_id"], name: "index_episodes_people_on_episode_id_and_person_id"
+    t.index ["person_id", "episode_id"], name: "index_episodes_people_on_person_id_and_episode_id"
   end
 
   create_table "people", force: :cascade do |t|
@@ -28,7 +35,6 @@ ActiveRecord::Schema.define(version: 2020_12_29_212543) do
     t.text "last_name", null: false
     t.text "bio_link"
     t.text "twitter_handle"
-    t.boolean "guest", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
