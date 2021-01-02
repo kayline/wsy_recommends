@@ -48,7 +48,7 @@ namespace :import do
             puts "No person found for #{recommendation_data}, finding person with matching first name"
             person = Person.find_by(first_name: recommendation_data[:person_name])
           end
-          recommendation = Recommendation.find_or_create_by(person_id: person.id, episode_id: episode.id)
+          recommendation = Recommendation.find_or_create_by(person_id: person.id, episode_id: episode.id, name: recommendation_data[:item_name])
           recommendation.update(name: recommendation_data[:item_name])
         rescue => error
           puts "#" * 80
