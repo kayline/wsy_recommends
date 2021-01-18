@@ -1,6 +1,27 @@
-<h3>Hosts</h3>
-<ul>
-  <% @people.each do |person| %>
+<h3>Recommendations by Person</h3>
+<h4>Current Hosts</h4>
+<ul class="current-hosts">
+  <% @hosts.each do |person| %>
+    <li>
+      <a href="<%= person_path(person) %>">
+        <%= person.full_name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+<h4>Former Hosts</h4>
+<ul class="former-hosts">
+  <% @former_hosts.each do |person| %>
+    <li>
+      <a href="<%= person_path(person) %>">
+        <%= person.full_name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
+<h4>Guests</h4>
+<ul class="guest-hosts">
+  <% @guests.each do |person| %>
     <li>
       <a href="<%= person_path(person) %>">
         <%= person.full_name %>

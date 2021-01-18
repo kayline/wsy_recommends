@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :episode do
-    number { 3 }
+    sequence(:number) { |n| n }
     title { "A Very Special Episode" }
   end
 end

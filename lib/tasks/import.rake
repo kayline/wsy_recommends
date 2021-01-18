@@ -5,6 +5,7 @@ namespace :import do
   task from_csv: :environment do
     EPISODES_CSV_PATH = 'episodes.csv'
     PEOPLE_CSV_PATH = 'people.csv'
+    PEOPLE_EPISODES_CSV_PATH = 'people_episodes.csv'
     RECOMMENDATIONS_CSV_PATH = 'recommendations.csv'
     ActiveRecord::Base.transaction do
       CSV.foreach(EPISODES_CSV_PATH, headers: true, header_converters: :symbol) do |episode_data|
@@ -22,20 +23,30 @@ namespace :import do
 
       CSV.foreach(PEOPLE_CSV_PATH, headers: true, header_converters: :symbol) do |person_data|
         begin
+          person = Person.find_or_create_by(first_name: person_data[:first_name], last_name: person_data[:last_name])
+            person.update(
+              twitter_handle: person_data[:twitter_handle],
+              is_current_host: person_data[:is_current_host],
+              is_former_host: person_data[:is_former_host],
+            )
+        rescue => error
+          puts "failed to create person for data: #{person_data}"
+          puts "error was: #{error}"
+        end
+      end
+
+      CSV.foreach(PEOPLE_EPISODES_CSV_PATH, headers: true, header_converters: :symbol) do |person_data|
+        begin
           names = person_data[:name].split(' ')
           last_name = names.pop
           first_name = names.join(' ')
-          person = Person.find_or_create_by(first_name: first_name, last_name: last_name)
-          if person_data[:twitter_handle].present? && person.twitter_handle.nil?
-            person.update(
-              twitter_handle: person_data[:twitter_handle],
-            )
-          end
+          person = Person.find_by(first_name: first_name, last_name: last_name)
           episode = Episode.find_by(number: person_data[:episode_number])
           episode.people << person
+          episode.people.uniq
           episode.save!
         rescue => error
-          puts "failed to create person for data: #{person_data}"
+          puts "failed to create episode-person join for data: #{person_data}"
           puts "error was: #{error}"
         end
       end
