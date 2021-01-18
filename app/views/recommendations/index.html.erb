@@ -1,6 +1,5 @@
-<h2>Who Shot Ya Recommends</h2>
-<p>All the movies recommended by the hosts and guests of the Who Shot Ya podcast.</p>
 <h3>Recommendations</h3>
+<p>All the movies recommended by the hosts and guests of the Who Shot Ya podcast, chronologically by episode.</p>
 <ul>
   <% @recommendations.each do |r| %>
     <li class="recommendation-title"><%= link_to(r.name, recommendation_path(r)) %> - <%= r.person.full_name %></li>

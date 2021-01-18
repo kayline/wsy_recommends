@@ -12,6 +12,20 @@
   </head>
 
   <body>
+  <header>
+    <div class="top-bar">
+      <div class="top-bar-left">
+        <ul class="dropdown menu" data-dropdown-menu>
+          <li><a href="<%= root_path %>">
+            <%= image_tag('logo.png', size: '64') %>
+            Who Shot Ya Recommends
+          </a></li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <div class="container">
     <%= yield %>
+  </div>
   </body>
 </html>
