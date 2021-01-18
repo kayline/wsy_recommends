@@ -41,7 +41,7 @@ Capybara.default_driver = :headless_chrome
 
 EPISODE_COUNT = 174
 EPISODES_CSV_PATH = 'episodes.csv'
-PEOPLE_CSV_PATH = 'people.csv'
+PEOPLE_CSV_PATH = 'people_episodes.csv'
 RECOMMENDATIONS_CSV_PATH = 'recommendations.csv'
 
 def find_recommendations_node(description_paragraphs)

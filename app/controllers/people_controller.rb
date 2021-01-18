@@ -1,6 +1,8 @@
 class PeopleController < ApplicationController
   def index
-    @people = Person.all
+    @hosts = Person.current_hosts.ordered
+    @former_hosts = Person.former_hosts.ordered
+    @guests = Person.guest_hosts.ordered
   end
 
   def show
