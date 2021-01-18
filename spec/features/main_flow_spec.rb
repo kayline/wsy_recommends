@@ -21,5 +21,7 @@ describe 'viewing recommendations' do
     click_on 'Pacific Rim'
     expect(page).to have_content('Thirst von Trapp')
     expect(page).to have_content('Episode 2')
+    click_on 'Who Shot Ya Recommends'
+    expect(page).to have_content('Recommendations')
   end
 end
