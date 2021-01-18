@@ -16,10 +16,17 @@
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="dropdown menu" data-dropdown-menu>
-          <li><a href="<%= root_path %>">
-            <%= image_tag('logo.png', size: '64') %>
-            Who Shot Ya Recommends
-          </a></li>
+          <li>
+            <a href="<%= root_path %>">
+              <%= image_tag('logo.png', size: '64') %>
+              Who Shot Ya Recommends
+            </a>
+          </li>
+          <li>
+            <a class="left-menu-link" href="<%= people_path %>">
+              Recs By Host
+            </a>
+          </li>
         </ul>
       </div>
     </div>

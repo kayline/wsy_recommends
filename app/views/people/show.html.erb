@@ -1,0 +1,6 @@
+<h3><%= @person.full_name %></h3>
+<ul>
+  <% @person.recommendations.each do |rec| %>
+    <li><%= rec.name %> - <%= rec.episode.release_date.strftime('%m/%-d/%Y') %></li>
+  <% end %>
+</ul>

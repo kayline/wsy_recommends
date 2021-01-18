@@ -1,0 +1,10 @@
+<h3>Hosts</h3>
+<ul>
+  <% @people.each do |person| %>
+    <li>
+      <a href="<%= person_path(person) %>">
+        <%= person.full_name %>
+      </a>
+    </li>
+  <% end %>
+</ul>
